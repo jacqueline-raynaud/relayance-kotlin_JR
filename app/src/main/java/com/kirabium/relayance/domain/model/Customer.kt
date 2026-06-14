@@ -4,12 +4,23 @@ import java.util.Calendar
 import java.util.Date
 
 data class Customer(val id: Int, val name: String, val email: String, val createdAt: Date) {
-    fun isNewCustomer(): Boolean {
+    /*fun isNewCustomer(): Boolean {
         val today = Calendar.getInstance()
         val createdAtCalendar = Calendar.getInstance().apply {
             time = createdAt
         }
         today.add(Calendar.MONTH, -3)
         return !createdAtCalendar.before(today)
+    }*/
+    // parameter with default value for fixe time
+    fun isNewCustomer(currentDate: Date = Date()): Boolean {
+        val limitDate = Calendar.getInstance()
+        limitDate.time = currentDate
+        limitDate.add(Calendar.MONTH, -3)
+
+        val createdAtCalendar = Calendar.getInstance().apply {
+            time = createdAt
+        }
+        return !createdAtCalendar.before(limitDate)
     }
 }

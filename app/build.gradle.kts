@@ -5,19 +5,38 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("jacoco")
 }
+jacoco {
+    toolVersion = "0.8.15"
+}
+// ajout pour essayer de forcer la version jacoco
+configurations.all {
+    resolutionStrategy {
+        eachDependency {
+            if (requested.group == "org.jacoco") {
+                useVersion("0.8.15")
+            }
+        }
+    }
+}
+
 tasks.withType<Test> {
     extensions.configure(JacocoTaskExtension::class) {
         isIncludeNoLocationClasses = true
-        excludes = listOf("jdk.internal.*")
+        excludes = listOf(
+            "jdk.internal.*",
+            "jdk.proxy1*",
+            "sun.*",
+            "com.sun.*"
+        )
     }
 }
 android {
     namespace = "com.kirabium.relayance"
     compileSdk = 34
 
-    testCoverage {
+/*    testCoverage {
         version = "0.8.8"
-    }
+    }*/
 
     defaultConfig {
         applicationId = "com.kirabium.relayance"
@@ -109,6 +128,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.assertj.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)

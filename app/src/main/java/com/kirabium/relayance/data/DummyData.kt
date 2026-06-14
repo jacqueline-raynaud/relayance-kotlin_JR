@@ -6,8 +6,16 @@ import java.util.Date
 
 
 object DummyData {
-    fun generateDate(monthsBack: Int): Date {
+    /*fun generateDate(monthsBack: Int): Date {
         val calendar = Calendar.getInstance()
+        calendar.add(Calendar.MONTH, -monthsBack)
+        return calendar.time
+    }*/
+
+    // ajouter un paramètre myDate de type Date avec une valeur par défaut de Date()
+    fun generateDate(monthsBack: Int,myDate:Date=Date()): Date {
+        val calendar = Calendar.getInstance()
+        calendar.time=myDate  // on utilise myDate comme date fixe
         calendar.add(Calendar.MONTH, -monthsBack)
         return calendar.time
     }
