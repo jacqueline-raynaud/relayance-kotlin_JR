@@ -7,7 +7,7 @@ import java.util.Calendar
 import java.util.Date
 
 
-class newCutomerFilterDateTest {
+class newCustomerFilterDateTest {
 
     // function to create date without hours and minutes
     private fun createDateForTest(year: Int, month: Int, day: Int): Date {
