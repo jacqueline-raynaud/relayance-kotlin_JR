@@ -31,9 +31,6 @@ class AddCustomerActivity : AppCompatActivity() {
     private fun saveCustomer() {
         binding.saveFab.setOnClickListener {
             //TODO save customer
-            // return to main activity 2 lignes à commenter pour test bout en bout
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
             finish()
         }
         }
