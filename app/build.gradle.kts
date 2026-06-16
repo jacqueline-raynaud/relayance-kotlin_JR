@@ -4,6 +4,9 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("jacoco")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.compose.compiler)
 }
 jacoco {
     toolVersion = "0.8.15"
@@ -33,10 +36,6 @@ tasks.withType<Test> {
 android {
     namespace = "com.kirabium.relayance"
     compileSdk = 34
-
-/*    testCoverage {
-        version = "0.8.8"
-    }*/
 
     defaultConfig {
         applicationId = "com.kirabium.relayance"
@@ -68,19 +67,15 @@ android {
             enableUnitTestCoverage = true
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+
+    kotlin {
+        jvmToolchain(17)
     }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+
     buildFeatures {
         compose = true
     }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
-    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -134,4 +129,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    // hilt ksp
+    implementation(libs.hilt)
+    ksp(libs.hilt.compiler)
 }
