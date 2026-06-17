@@ -22,6 +22,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -32,17 +34,52 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kirabium.relayance.R
+import com.kirabium.relayance.data.DummyData
 import com.kirabium.relayance.domain.model.Customer
 import com.kirabium.relayance.extension.DateExt.Companion.toHumanDate
-import java.util.Date
+import com.kirabium.relayance.ui.customerdetail.CustomerDetailUiState
+import com.kirabium.relayance.ui.customerdetail.CustomerDetailViewModel
+import com.kirabium.relayance.ui.customerdetail.DetailErrorScreen
+import com.kirabium.relayance.ui.customerdetail.DetailLoadingScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
     modifier: Modifier = Modifier,
-    customer: Customer,
-    onBackClick: () -> Unit,
+    viewModel : CustomerDetailViewModel,
+    onBackClick: () -> Unit
 ) {
+    val uiState by viewModel.uiState.collectAsState()
+
+    when (val state = uiState) {
+        is CustomerDetailUiState.Loading -> {
+            DetailLoadingScreen(onBackClick= onBackClick)
+        }
+        is CustomerDetailUiState.Success -> {
+            DetailContent(
+                modifier = modifier,
+                customer = state.customer,
+                onBackClick= onBackClick)
+        }
+        is CustomerDetailUiState.Error -> {
+            DetailErrorScreen(
+                modifier = modifier,
+                message = state.exception.message ?: stringResource(id = R.string.unknown_error),
+                onBackClick= onBackClick
+            )
+        }
+    }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DetailContent(
+    customer : Customer,
+    onBackClick: () -> Unit,
+    modifier: Modifier = Modifier
+)
+{
     Scaffold(
         modifier = modifier,
         topBar = {
@@ -126,8 +163,20 @@ fun DetailScreen(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-private fun DetailScreenPreview() {
-    DetailScreen(customer = Customer(0, "Nom du Client", "email@client.com", Date())) {}
+fun DetailContentPreview() {
+    DetailContent(
+        customer = DummyData.customers[0],
+        onBackClick = {}
+    )
+}
+
+@Preview(showBackground = true, name = "New Customer")
+@Composable
+fun DetailContentNewPreview() {
+    DetailContent(
+        customer = DummyData.customers[4],
+        onBackClick = {}
+    )
 }

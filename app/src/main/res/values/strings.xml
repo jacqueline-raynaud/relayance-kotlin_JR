@@ -10,4 +10,7 @@
     <string name="created_at">Created at: %1$s</string>
     <string name="new_ribbon">New</string>
     <string name="contentDescription_go_back">Go back</string>
+    <string name="error_title">Client introuvable</string>
+    <string name="unknown_error">erreur inconnue</string>
+    <string name="loading_title">chargement en cours</string>
 </resources>
