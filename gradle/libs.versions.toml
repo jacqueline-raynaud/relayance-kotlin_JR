@@ -17,6 +17,10 @@ espressoContrib = "3.7.0"
 # ksp hilt
 ksp = "2.3.6"
 hilt = "2.58"
+# cucumber
+cucumber = "7.31.0"
+coroutines = "1.11.0"
+
 
 
 [libraries]
@@ -44,10 +48,16 @@ androidx-espresso-contrib = { group = "androidx.test.espresso", name = "espresso
 hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 
+# cucumber
+cucumber-java  = { group = "io.cucumber", name = "cucumber-java",  version.ref = "cucumber" }
+cucumber-junit = { group = "io.cucumber", name = "cucumber-junit", version.ref = "cucumber" }
+kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+
 # hilt ksp
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

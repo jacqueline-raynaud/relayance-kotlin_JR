@@ -132,4 +132,8 @@ dependencies {
     // hilt ksp
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
+    // cucumber
+    testImplementation(libs.cucumber.java)
+    testImplementation(libs.cucumber.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
 }
