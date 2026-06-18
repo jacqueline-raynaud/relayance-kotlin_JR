@@ -13,4 +13,6 @@
     <string name="error_title">Client introuvable</string>
     <string name="unknown_error">erreur inconnue</string>
     <string name="loading_title">chargement en cours</string>
+    <string name="invalid_email">Format d\'email invalide</string>
+    <string name="customer_added">Client ajouté</string>
 </resources>
