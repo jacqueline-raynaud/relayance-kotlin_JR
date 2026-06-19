@@ -2,6 +2,7 @@ package com.kirabium.relayance
 
 import com.kirabium.relayance.data.DummyData.generateDate
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatCode
 import org.junit.Test
 import java.util.Calendar
 import java.util.Date
@@ -34,7 +35,7 @@ class GeneratorDateWithArrayTest {
             createDateForTest(2026, Calendar.FEBRUARY, 28)
         ),
         DatesTest(
-            "remove 1 month from January 1st, display December 31st",
+            "remove 1 month from January 1st, display December 1st",
             1,
             createDateForTest(2026, Calendar.JANUARY, 1),
             createDateForTest(2025, Calendar.DECEMBER, 1)
@@ -67,16 +68,9 @@ class GeneratorDateWithArrayTest {
     }
 
     @Test
-    fun `removing a lot of months doesn't crashes`() {
-
-        // Arrange
-        val monthsBack = 120000
-
-        // Act
-        val result: Date =
-            generateDate(monthsBack, myDate = createDateForTest(2026, Calendar.JANUARY, 1))
-
-        // Assert
-        assertThat(result).isNotNull()
+    fun `removing a lot of months doesn't crash`() {
+        assertThatCode {
+            generateDate(120000, myDate = createDateForTest(2026, Calendar.JANUARY, 1))
+        }.doesNotThrowAnyException()
     }
 }

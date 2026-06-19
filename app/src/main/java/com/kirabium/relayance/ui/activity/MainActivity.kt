@@ -7,7 +7,9 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kirabium.relayance.data.DummyData
 import com.kirabium.relayance.databinding.ActivityMainBinding
@@ -59,29 +61,31 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeViewModel() {
         lifecycleScope.launch {
-            viewModel.uiState.collect { state ->
-                when (state) {
-                    is CustomerListUiState.Loading -> {
-                        // Exemple si tu as une ProgressBar et un TextView d'erreur dans ton XML
-                        // binding.progressBar.visibility = View.VISIBLE
-                        binding.customerRecyclerView.visibility = View.GONE
-                        // binding.errorTextView.visibility = View.GONE
-                    }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { state ->
+                    when (state) {
+                        is CustomerListUiState.Loading -> {
+                            // Exemple si tu as une ProgressBar et un TextView d'erreur dans ton XML
+                            // binding.progressBar.visibility = View.VISIBLE
+                            binding.customerRecyclerView.visibility = View.GONE
+                            // binding.errorTextView.visibility = View.GONE
+                        }
 
-                    is CustomerListUiState.Success -> {
-                        // binding.progressBar.visibility = View.GONE
-                        binding.customerRecyclerView.visibility = View.VISIBLE
-                        // binding.errorTextView.visibility = View.GONE
+                        is CustomerListUiState.Success -> {
+                            // binding.progressBar.visibility = View.GONE
+                            binding.customerRecyclerView.visibility = View.VISIBLE
+                            // binding.errorTextView.visibility = View.GONE
 
-                        // On passe la liste fraîchement récupérée à l'adaptateur
-                        customerAdapter.updateData(state.customers)
-                    }
+                            // On passe la liste fraîchement récupérée à l'adaptateur
+                            customerAdapter.updateData(state.customers)
+                        }
 
-                    is CustomerListUiState.Error -> {
-                        // binding.progressBar.visibility = View.GONE
-                        binding.customerRecyclerView.visibility = View.GONE
-                        // binding.errorTextView.visibility = View.VISIBLE
-                        // binding.errorTextView.text = state.exception.message
+                        is CustomerListUiState.Error -> {
+                            // binding.progressBar.visibility = View.GONE
+                            binding.customerRecyclerView.visibility = View.GONE
+                            // binding.errorTextView.visibility = View.VISIBLE
+                            // binding.errorTextView.text = state.exception.message
+                        }
                     }
                 }
             }

@@ -48,6 +48,6 @@ class CustomerAdapter(
 
     fun updateData(newCustomers: List<Customer>) {
         this.customers = newCustomers
-        notifyDataSetChanged() // Demande au RecyclerView de se redessiner
+        notifyDataSetChanged()
     }
 }
