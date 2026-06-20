@@ -12,17 +12,14 @@ class CustomerRepositoryImpl @Inject constructor() : CustomerRepository {
     private val currentCustomers = DummyData.customers.toMutableList()
 
     override suspend fun getAllCustomers(): List<Customer> {
-        //delay(500) // Petit délai artificiel pour simuler un temps de chargement réseau/BDD
         return currentCustomers.toList()
     }
 
     override suspend fun getCustomerById(id: Int): Customer? {
-        //delay(200)
         return currentCustomers.find { it.id == id }
     }
 
     override suspend fun addCustomer(customer: Customer) {
-        //delay(500)
         currentCustomers.add(customer)
     }
 }
