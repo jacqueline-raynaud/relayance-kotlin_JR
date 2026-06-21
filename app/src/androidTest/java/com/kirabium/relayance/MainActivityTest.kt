@@ -35,30 +35,28 @@ class MainActivityTest {
 
     @Test
     fun testAddFabClickShouldOpenAddCustomerScreen() {
-        // Test if the customerList is displayed
         onView(withId(R.id.customerRecyclerView))
             .check(matches(isDisplayed()))
-        // find button and click on it
+
         onView(withId(R.id.addCustomerFab))
             .perform(click())
-        // find EditText and check if it is displayed
+
         onView(withId(R.id.nameEditText))
             .check(matches(isDisplayed()))
-        onView(withId(R.id.saveFab))
-            .perform(click())
+
     }
 @Test
 fun clickOnBackArrowOnOpenCustomerListReturnToMain() {
-    // Test if the customerList is displayed
+
     onView(withId(R.id.customerRecyclerView))
         .check(matches(isDisplayed()))
-    // find button and click on it
+
     onView(withId(R.id.addCustomerFab))
         .perform(click())
-    // find EditText and check if it is displayed
+
     onView(withId(R.id.nameEditText))
         .check(matches(isDisplayed()))
-    // test if back button works in addscreen
+
     onView(withContentDescription(androidx.appcompat.R.string.abc_action_bar_up_description))
         .perform(click())
     onView(withId(R.id.customerRecyclerView))

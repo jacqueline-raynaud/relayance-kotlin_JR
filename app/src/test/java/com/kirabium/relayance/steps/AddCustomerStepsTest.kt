@@ -10,14 +10,13 @@ import io.cucumber.java.fr.Et
 import io.cucumber.java.fr.Quand
 import io.cucumber.java.fr.Soit
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.assertj.core.api.Assertions.assertThat
 
 
-class AddCustomerTest {
+class AddCustomerStepsTest {
     private lateinit var repository: FakeCustomerRepository
     private lateinit var viewModel: AddCustomerViewModel
 

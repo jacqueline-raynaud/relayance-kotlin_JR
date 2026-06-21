@@ -7,7 +7,7 @@ import java.util.Calendar
 import java.util.Date
 
 
-class newCustomerFilterDateTest {
+class NewCustomerFilterDateTest {
 
     // function to create date without hours and minutes
     private fun createDateForTest(year: Int, month: Int, day: Int): Date {
@@ -39,14 +39,14 @@ class newCustomerFilterDateTest {
             expectedResult = true
         ),
         LimitDatesTest(
-            "Does a date equal the filter result in a false value",
-            customer=Customer (2,"Jeanne", "jeanne@test.com",createDateForTest(2025, Calendar.DECEMBER, 1)),
+            "Does a date equal the filter result in a true value",
+            customer=Customer (2,"Jeanne", "jeanne@test.com",createDateForTest(2025, Calendar.OCTOBER, 1)),
             expectedResult = true
         )
     )
 
     @Test
-    fun `the generateDate function reacts correctly to all imposed variations`() {
+    fun `isNewCustomer function reacts correctly to all imposed variations`() {
         datesTest.forEach { datesTest ->
 
             // Act

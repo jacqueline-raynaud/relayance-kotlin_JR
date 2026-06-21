@@ -1,5 +1,6 @@
 package com.kirabium.relayance.util
 
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.NoMatchingViewException

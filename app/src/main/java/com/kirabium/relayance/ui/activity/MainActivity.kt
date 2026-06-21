@@ -36,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         observeViewModel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.loadCustomers()
+    }
+
     private fun setupFab() {
         binding.addCustomerFab.setOnClickListener {
             val intent = Intent(this, AddCustomerActivity::class.java)
