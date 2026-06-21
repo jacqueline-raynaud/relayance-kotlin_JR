@@ -5,10 +5,7 @@ import com.kirabium.relayance.domain.validator.EmailValidator
 import com.kirabium.relayance.ui.customeradd.AddCustomerViewModel
 import io.cucumber.java.After
 import io.cucumber.java.Before
-import io.cucumber.java.fr.Alors
-import io.cucumber.java.fr.Et
-import io.cucumber.java.fr.Quand
-import io.cucumber.java.fr.Soit
+import io.cucumber.java.en.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
@@ -32,37 +29,37 @@ class AddCustomerStepsTest {
     @After
     fun tearDown() = Dispatchers.resetMain()
 
-    @Soit("un formulaire d'ajout de client vide")
+    @Given("an empty customer addition form")
     fun formulaire_vide() { // etat initial
     }
 
-    @Quand("je saisis le nom {string} et l'email {string}")
+    @When("I enter the name {string} and the email {string}")
     fun je_saisie(nom: String, email: String) {
         viewModel.onNameChange(nom)
         viewModel.onEmailChange(email)
     }
 
-    @Et("je valide l'ajout")
+    @Then("I confirm the addition")
     fun je_valide() {
         viewModel.save()
     }
 
-    @Alors("le client {string} est présent dans la liste des clients")
+    @Then("The client {string} is present in the list of clients")
     fun client_est_present(nom: String) {
         assertThat(repository.customers.map { it.name }).contains(nom)
     }
 
-    @Alors("aucune erreur d'email n'est affichée")
+    @Then("No email errors are displayed")
     fun aucune_erreur() {
         assertThat(viewModel.uiState.value.emailError).isFalse()
     }
 
-    @Alors("une erreur d'email est affichée")
+    @Then("An email error is displayed")
     fun une_erreur_affichee() {
         assertThat(viewModel.uiState.value.emailError).isTrue()
     }
 
-    @Alors("la liste des clients reste inchangée")
+    @Then("The customer list remains unchanged")
     fun liste_clients_inchangee() {
         assertThat(repository.customers).isEmpty()
     }

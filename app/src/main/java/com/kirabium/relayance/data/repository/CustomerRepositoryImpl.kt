@@ -7,8 +7,6 @@ import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class CustomerRepositoryImpl @Inject constructor() : CustomerRepository {
-    // si on part sur une liste vide : private val customers = mutableListOf<Customer>()
-
     private val currentCustomers = DummyData.customers.toMutableList()
 
     override suspend fun getAllCustomers(): List<Customer> {

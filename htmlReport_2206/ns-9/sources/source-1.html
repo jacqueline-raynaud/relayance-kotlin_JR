@@ -1,0 +1,305 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > AddCustomerActivity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.kirabium.relayance.ui.activity</a>
+</div>
+
+<h1>Coverage Summary for Class: AddCustomerActivity (com.kirabium.relayance.ui.activity)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AddCustomerActivity</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/16)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">AddCustomerActivity$observeState$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddCustomerActivity$observeState$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddCustomerActivity$observeState$1$1$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddCustomerActivity$special$$inlined$viewModels$default$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddCustomerActivity$special$$inlined$viewModels$default$2</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">AddCustomerActivity$special$$inlined$viewModels$default$3</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/14)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/28)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.kirabium.relayance.ui.activity
+&nbsp;
+&nbsp;import android.content.Intent
+&nbsp;import android.os.Bundle
+&nbsp;import android.widget.Toast
+&nbsp;import androidx.activity.viewModels
+&nbsp;import androidx.appcompat.app.AppCompatActivity
+&nbsp;import androidx.lifecycle.Lifecycle
+&nbsp;import androidx.lifecycle.lifecycleScope
+&nbsp;import androidx.lifecycle.repeatOnLifecycle
+&nbsp;import com.kirabium.relayance.R
+&nbsp;import com.kirabium.relayance.databinding.ActivityAddCustomerBinding
+&nbsp;import com.kirabium.relayance.ui.customeradd.AddCustomerViewModel
+&nbsp;import dagger.hilt.android.AndroidEntryPoint
+&nbsp;import kotlinx.coroutines.launch
+&nbsp;
+<b class="nc">&nbsp;@AndroidEntryPoint</b>
+&nbsp;class AddCustomerActivity : AppCompatActivity() {
+&nbsp;
+&nbsp;    private lateinit var binding: ActivityAddCustomerBinding
+<b class="nc">&nbsp;    private val viewModel: AddCustomerViewModel by viewModels()</b>
+&nbsp;
+&nbsp;
+&nbsp;    override fun onCreate(savedInstanceState: Bundle?) {
+<b class="nc">&nbsp;        super.onCreate(savedInstanceState)</b>
+&nbsp;
+<b class="nc">&nbsp;        setupBinding()</b>
+<b class="nc">&nbsp;        setupToolbar()</b>
+<b class="nc">&nbsp;        saveCustomer()</b>
+<b class="nc">&nbsp;        observeState()</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun setupToolbar() {
+<b class="nc">&nbsp;        supportActionBar?.setDisplayHomeAsUpEnabled(true)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun setupBinding() {
+<b class="nc">&nbsp;        binding = ActivityAddCustomerBinding.inflate(layoutInflater)</b>
+<b class="nc">&nbsp;        val view = binding.root</b>
+<b class="nc">&nbsp;        setContentView(view)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun saveCustomer() {
+<b class="nc">&nbsp;        binding.saveFab.setOnClickListener {</b>
+<b class="nc">&nbsp;            viewModel.onNameChange(binding.nameEditText.text?.toString().orEmpty())</b>
+<b class="nc">&nbsp;            viewModel.onEmailChange(binding.emailEditText.text?.toString().orEmpty())</b>
+<b class="nc">&nbsp;            viewModel.save()</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private fun observeState() {
+<b class="nc">&nbsp;        lifecycleScope.launch {</b>
+<b class="nc">&nbsp;            repeatOnLifecycle(Lifecycle.State.STARTED) {</b>
+<b class="nc">&nbsp;                viewModel.uiState.collect { state -&gt;</b>
+&nbsp;
+&nbsp;                    // email error
+<b class="nc">&nbsp;                    binding.emailTextInputLayout.error =</b>
+<b class="nc">&nbsp;                        if (state.emailError) getString(R.string.invalid_email) else null</b>
+&nbsp;
+&nbsp;                    // loading state - disable FAB while loading
+<b class="nc">&nbsp;                    binding.saveFab.isEnabled = !state.isloading</b>
+&nbsp;
+&nbsp;                    //Toast and go to MainActivity
+<b class="nc">&nbsp;                    if (state.isSaved) {</b>
+<b class="nc">&nbsp;                        Toast.makeText(</b>
+<b class="nc">&nbsp;                            this@AddCustomerActivity,</b>
+<b class="nc">&nbsp;                            R.string.customer_added,</b>
+<b class="nc">&nbsp;                            Toast.LENGTH_LONG</b>
+<b class="nc">&nbsp;                        ).show()</b>
+<b class="nc">&nbsp;                        finish()</b>
+&nbsp;                    }
+&nbsp;                }
+&nbsp;            }
+&nbsp;        }
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-06-22 01:15</div>
+</div>
+</body>
+</html>

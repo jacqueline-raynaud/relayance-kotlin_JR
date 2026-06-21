@@ -1,0 +1,134 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > DummyData</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.kirabium.relayance.data</a>
+</div>
+
+<h1>Coverage Summary for Class: DummyData (com.kirabium.relayance.data)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DummyData</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (11/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.kirabium.relayance.data
+&nbsp;
+&nbsp;import com.kirabium.relayance.domain.model.Customer
+&nbsp;import java.util.Calendar
+&nbsp;import java.util.Date
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;object DummyData {</b>
+&nbsp;    /*fun generateDate(monthsBack: Int): Date {
+&nbsp;        val calendar = Calendar.getInstance()
+&nbsp;        calendar.add(Calendar.MONTH, -monthsBack)
+&nbsp;        return calendar.time
+&nbsp;    }*/
+&nbsp;
+&nbsp;    // ajouter un paramètre myDate de type Date avec une valeur par défaut de Date()
+&nbsp;    fun generateDate(monthsBack: Int,myDate:Date=Date()): Date {
+<b class="fc">&nbsp;        val calendar = Calendar.getInstance()</b>
+<b class="fc">&nbsp;        calendar.time=myDate  // on utilise myDate comme date fixe</b>
+<b class="fc">&nbsp;        calendar.add(Calendar.MONTH, -monthsBack)</b>
+<b class="fc">&nbsp;        return calendar.time</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    val customers = listOf(</b>
+<b class="fc">&nbsp;        Customer(1, &quot;Alice Wonderland&quot;, &quot;alice@example.com&quot;, generateDate(12)),</b>
+<b class="fc">&nbsp;        Customer(2, &quot;Bob Builder&quot;, &quot;bob@example.com&quot;, generateDate(6)),</b>
+<b class="fc">&nbsp;        Customer(3, &quot;Charlie Chocolate&quot;, &quot;charlie@example.com&quot;, generateDate(3)),</b>
+<b class="fc">&nbsp;        Customer(4, &quot;Diana Dream&quot;, &quot;diana@example.com&quot;, generateDate(1)),</b>
+<b class="fc">&nbsp;        Customer(5, &quot;Evan Escape&quot;, &quot;evan@example.com&quot;, generateDate(0)),</b>
+&nbsp;    )
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2026-06-22 01:15</div>
+</div>
+</body>
+</html>
