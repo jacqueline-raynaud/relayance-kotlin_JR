@@ -2,6 +2,7 @@
 .gradle
 /local.properties
 /htmlReport
+/*.html
 /.idea
 /.idea/caches
 /.idea/libraries
