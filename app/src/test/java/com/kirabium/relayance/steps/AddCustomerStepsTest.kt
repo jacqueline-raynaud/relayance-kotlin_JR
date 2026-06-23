@@ -30,37 +30,44 @@ class AddCustomerStepsTest {
     fun tearDown() = Dispatchers.resetMain()
 
     @Given("an empty customer addition form")
-    fun formulaire_vide() { // etat initial
+    fun an_empty_customer_addition_form() {
+        assertThat(viewModel.uiState.value.name).isEmpty()
+        assertThat(viewModel.uiState.value.email).isEmpty()
     }
 
     @When("I enter the name {string} and the email {string}")
-    fun je_saisie(nom: String, email: String) {
+    fun i_enter_the_name_and_email(nom: String, email: String) {
         viewModel.onNameChange(nom)
         viewModel.onEmailChange(email)
     }
 
     @Then("I confirm the addition")
-    fun je_valide() {
+    fun i_confirm_the_addition() {
         viewModel.save()
     }
 
     @Then("The client {string} is present in the list of clients")
-    fun client_est_present(nom: String) {
+    fun the_client_is_present_in_the_list_of_clients(nom: String) {
         assertThat(repository.customers.map { it.name }).contains(nom)
     }
 
     @Then("No email errors are displayed")
-    fun aucune_erreur() {
+    fun no_email_errors_displayed() {
         assertThat(viewModel.uiState.value.emailError).isFalse()
     }
 
     @Then("An email error is displayed")
-    fun une_erreur_affichee() {
+    fun an_email_error_displayed() {
         assertThat(viewModel.uiState.value.emailError).isTrue()
     }
 
     @Then("The customer list remains unchanged")
-    fun liste_clients_inchangee() {
+    fun the_customer_list_remains_unchanged() {
         assertThat(repository.customers).isEmpty()
+    }
+
+    @Then("A name error is displayed")
+    fun a_name_error_displayed() {
+        assertThat(viewModel.uiState.value.nameError).isTrue()
     }
 }

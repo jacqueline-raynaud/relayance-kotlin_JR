@@ -56,6 +56,9 @@ class AddCustomerActivity : AppCompatActivity() {
                     // email error
                     binding.emailTextInputLayout.error =
                         if (state.emailError) getString(R.string.invalid_email) else null
+                    // name error
+                    binding.nameTextInputLayout.error =
+                        if (state.nameError) getString(R.string.invalid_name) else null
 
                     // loading state - disable FAB while loading
                     binding.saveFab.isEnabled = !state.isloading

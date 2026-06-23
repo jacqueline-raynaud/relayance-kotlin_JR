@@ -36,7 +36,7 @@ import androidx.compose.ui.unit.sp
 import com.kirabium.relayance.R
 import com.kirabium.relayance.data.DummyData
 import com.kirabium.relayance.domain.model.Customer
-import com.kirabium.relayance.extension.DateExt.Companion.toHumanDate
+import com.kirabium.relayance.extension.toHumanDate
 import com.kirabium.relayance.ui.customerdetail.CustomerDetailUiState
 import com.kirabium.relayance.ui.customerdetail.CustomerDetailViewModel
 import com.kirabium.relayance.ui.customerdetail.DetailErrorScreen

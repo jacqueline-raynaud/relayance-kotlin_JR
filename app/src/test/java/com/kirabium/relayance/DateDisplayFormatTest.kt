@@ -1,6 +1,6 @@
 package com.kirabium.relayance
 
-import com.kirabium.relayance.extension.DateExt.Companion.toHumanDate
+import com.kirabium.relayance.extension.toHumanDate
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import java.util.Calendar

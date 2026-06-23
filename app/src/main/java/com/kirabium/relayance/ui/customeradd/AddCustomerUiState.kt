@@ -5,5 +5,6 @@ data class AddCustomerUiState (
         val email: String = "",
         val emailError: Boolean = false,
         val isSaved: Boolean = false,
-        val isloading: Boolean = false
-    )
+        val isloading: Boolean = false,
+        val nameError: Boolean = false
+)

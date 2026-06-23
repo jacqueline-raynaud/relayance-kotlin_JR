@@ -50,6 +50,13 @@ android {
         }
     }
 
+    testOptions {
+        unitTests.all {
+            it.useJUnitPlatform()
+        }
+    }
+
+
     buildFeatures {
         viewBinding = true
     }
@@ -63,6 +70,7 @@ android {
             )
         }
         debug {
+            // for surveillance by JaCoCo
             enableAndroidTestCoverage = true
             enableUnitTestCoverage = true
         }
@@ -86,7 +94,7 @@ android {
 val androidExtension = extensions.getByType<BaseExtension>()
 
 val jacocoTestReport by tasks.registering(JacocoReport::class) {
-    dependsOn("testDebugUnitTest", "createDebugCoverageReport")
+    dependsOn("testDebugUnitTest", "createDebugAndroidTestCoverageReport")
     group = "Reporting"
     description = "Generate Jacoco coverage reports"
 
@@ -95,7 +103,19 @@ val jacocoTestReport by tasks.registering(JacocoReport::class) {
         html.required.set(true)
     }
 
-    val debugTree = fileTree("${buildDir}/tmp/kotlin-classes/debug")
+/*    val debugTree = fileTree("${buildDir}/tmp/kotlin-classes/debug")
+    val mainSrc = androidExtension.sourceSets.getByName("main").java.srcDirs*/
+    val fileFilter = listOf(
+        "**/R.class", "**/R$*.class", "**/BuildConfig.*", "**/Manifest*.*",
+        "**/*Test*.*", "android/**/*.*",
+        "**/*_Hilt*.*", "**/Hilt_*.*", "**/*_Factory.*",
+        "**/*_MembersInjector.*", "**/*Module_*.*", "**/*Dagger*.*",
+        "**/ComposableSingletons*.*"
+    )
+    val debugTree = fileTree("${buildDir}/tmp/kotlin-classes/debug") {
+        exclude(fileFilter)
+    }
+
     val mainSrc = androidExtension.sourceSets.getByName("main").java.srcDirs
 
     classDirectories.setFrom(debugTree)
@@ -121,10 +141,14 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.espresso.contrib)
+    // Tests xml
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     testImplementation(libs.assertj.core)
+    androidTestImplementation(libs.androidx.espresso.contrib)
+
+    // Test compose
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
@@ -136,4 +160,8 @@ dependencies {
     testImplementation(libs.cucumber.java)
     testImplementation(libs.cucumber.junit)
     testImplementation(libs.kotlinx.coroutines.test)
+    // kotest and adaptator old test junit4
+    testImplementation(libs.junit.vintage)
+    testImplementation(libs.kotest.runner)
+    testImplementation(libs.kotest.assertions)
 }

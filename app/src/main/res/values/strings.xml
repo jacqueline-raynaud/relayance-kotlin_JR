@@ -10,9 +10,10 @@
     <string name="created_at">Created at: %1$s</string>
     <string name="new_ribbon">New</string>
     <string name="contentDescription_go_back">Go back</string>
-    <string name="error_title">Client introuvable</string>
-    <string name="unknown_error">erreur inconnue</string>
-    <string name="loading_title">chargement en cours</string>
-    <string name="invalid_email">Format d\'email invalide</string>
-    <string name="customer_added">Client ajouté</string>
+    <string name="error_title">Customer not found</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="loading_title">Loading...</string>
+    <string name="invalid_email">Invalid email format</string>
+    <string name="customer_added">Customer added</string>
+    <string name="invalid_name">The name cannot be empty or consist only of spaces</string>
 </resources>

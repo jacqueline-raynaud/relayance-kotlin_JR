@@ -3,26 +3,42 @@ package com.kirabium.relayance.usecase
 import com.kirabium.relayance.domain.model.Customer
 import com.kirabium.relayance.domain.usecases.GetAllCustomersUseCase
 import com.kirabium.relayance.steps.FakeCustomerRepository
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import io.kotest.core.spec.IsolationMode
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.shouldBe
 import java.util.Date
 
-class GetAllCustomersUseCaseTest {
-    private val repository = FakeCustomerRepository()
-    private val useCase = GetAllCustomersUseCase(repository)
+class GetAllCustomersUseCaseTest : BehaviorSpec({
 
-    @Test
-    fun `invoke returns all customers from repository`() = runBlocking {
-        // Arrange
-        val c1 = Customer(1, "Alice", "alice@test.com", Date())
-        val c2 = Customer(2, "Bob", "bob@test.com", Date())
-        repository.customers.addAll(listOf(c1, c2))
+    isolationMode = IsolationMode.InstancePerLeaf
+    val repository = FakeCustomerRepository()
+    val useCase = GetAllCustomersUseCase(repository)
 
-        // Act : appeler le use case
-        val result = useCase()
+    //scenario with data
+    Given("a repository with two customers") {
+        val paul = Customer(1, "pPaul", "paul@test.com", Date())
+        val alain = Customer(2, "Alain", "alain@test.com", Date())
 
-        // Assert : la liste retournée doit être celle du repository
-        assertEquals(listOf(c1, c2), result)
+        repository.customers.addAll(listOf(paul, alain))
+
+        When("the use case is executed for retrieve the list") {
+            val result = useCase()
+
+            Then("it should return the list of customers") {
+                result shouldBe listOf(paul, alain)
+                result.size shouldBe 2
+            }
+        }
     }
-}
+    // scenario whithout data
+    Given("an empty repository") {
+
+        When("the use case is executed for retrieve the list") {
+            val result = useCase()
+
+            Then("it should return an empty list") {
+                result shouldBe emptyList()
+            }
+        }
+    }
+})

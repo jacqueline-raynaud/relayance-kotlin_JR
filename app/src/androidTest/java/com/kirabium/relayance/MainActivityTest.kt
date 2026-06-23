@@ -46,7 +46,7 @@ class MainActivityTest {
 
     }
 @Test
-fun clickOnBackArrowOnOpenCustomerListReturnToMain() {
+fun navigateByClickingFabAndBack() {
 
     onView(withId(R.id.customerRecyclerView))
         .check(matches(isDisplayed()))

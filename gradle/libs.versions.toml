@@ -2,10 +2,6 @@
 agp = "8.4.2"
 kotlin = "2.2.20"
 coreKtx = "1.10.1"
-junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
-assertj = "3.27.7"
 lifecycleRuntimeKtx = "2.6.1"
 activityCompose = "1.7.0"
 composeBom = "2023.08.00"
@@ -13,6 +9,11 @@ appcompat = "1.6.1"
 material = "1.11.0"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
+# test espresso junit
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+assertj = "3.27.7"
 espressoContrib = "3.7.0"
 # ksp hilt
 ksp = "2.3.6"
@@ -20,7 +21,9 @@ hilt = "2.58"
 # cucumber
 cucumber = "7.31.0"
 coroutines = "1.11.0"
-
+# kotest et moteur junit4 for old tests
+kotest = "6.2.1"
+junitVintage ="6.1.0"
 
 
 [libraries]
@@ -52,6 +55,12 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.r
 cucumber-java  = { group = "io.cucumber", name = "cucumber-java",  version.ref = "cucumber" }
 cucumber-junit = { group = "io.cucumber", name = "cucumber-junit", version.ref = "cucumber" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
+
+# kotest
+kotest-runner = { group = "io.kotest", name = "kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest" }
+# adapteur junit4 for old tests
+junit-vintage = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junitVintage" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

@@ -10,6 +10,7 @@ import javax.inject.Inject
 sealed interface AddCustomerResult {
     data object Success : AddCustomerResult
     data object InvalidEmail : AddCustomerResult
+    data object EmptyName : AddCustomerResult
 }
 
 class AddCustomerUseCase @Inject constructor(
@@ -17,9 +18,13 @@ class AddCustomerUseCase @Inject constructor(
     private val emailValidator: EmailValidator
 ) {
     suspend operator fun invoke(name: String, email: String): AddCustomerResult {
+        if (name.isBlank()) return AddCustomerResult.EmptyName
         if (!emailValidator.isValid(email)) return AddCustomerResult.InvalidEmail
+
+
         val nextId = (repository.getAllCustomers().maxOfOrNull { it.id } ?: 0) + 1
         repository.addCustomer(Customer(nextId, name, email, Date()))
+
         return AddCustomerResult.Success
     }
 }

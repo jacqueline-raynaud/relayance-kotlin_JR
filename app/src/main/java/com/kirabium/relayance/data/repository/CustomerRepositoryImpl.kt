@@ -7,7 +7,15 @@ import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 class CustomerRepositoryImpl @Inject constructor() : CustomerRepository {
+
+    companion object{
     private val currentCustomers = DummyData.customers.toMutableList()
+
+        fun resetForTest(){
+            currentCustomers.clear()
+            currentCustomers.addAll(DummyData.customers)
+        }
+    }
 
     override suspend fun getAllCustomers(): List<Customer> {
         return currentCustomers.toList()

@@ -34,6 +34,8 @@ class AddCustomerViewModel @Inject constructor(
                     _uiState.update { it.copy(isSaved = true, emailError = false) }
                 AddCustomerResult.InvalidEmail ->
                     _uiState.update { it.copy(isloading=false, emailError = true) }
+                AddCustomerResult.EmptyName ->
+                    _uiState.update { it.copy(isloading=false, nameError = true) }
             }
         }
     }

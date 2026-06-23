@@ -23,7 +23,7 @@ class CustomerDetailViewModel @Inject constructor(
             _uiState.value = CustomerDetailUiState.Loading
             try {
                 val customer = getCustomerByIdUseCase(id)
-                // Comme le UseCase renvoie un "Customer?", on vérifie qu'il n'est pas null
+
                 if (customer != null) {
                     _uiState.value = CustomerDetailUiState.Success(customer)
                 } else {

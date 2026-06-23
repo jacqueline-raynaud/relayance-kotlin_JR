@@ -3,40 +3,42 @@ package com.kirabium.relayance.usecase
 import com.kirabium.relayance.domain.model.Customer
 import com.kirabium.relayance.domain.usecases.GetCustomerByIdUseCase
 import com.kirabium.relayance.steps.FakeCustomerRepository
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNull
-import org.junit.Test
+import io.kotest.core.spec.IsolationMode
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.shouldBe
 import java.util.Date
 
-class GetCustomerByIdUseCaseTest {
+class GetCustomerByIdUseCaseTest : BehaviorSpec({
 
-        private val repository = FakeCustomerRepository()
-        private val useCase = GetCustomerByIdUseCase(repository)
+    isolationMode = IsolationMode.InstancePerLeaf
+    val repository = FakeCustomerRepository()
+    val useCase = GetCustomerByIdUseCase(repository)
 
-        @Test
-        fun `invoke returns customer when present`() = runBlocking {
-            // Arrange
-            val c1 = Customer(1, "Alice", "alice@test.com", Date())
-            val c2 = Customer(2, "Bob", "bob@test.com", Date())
-            repository.customers.addAll(listOf(c1, c2))
 
-            // Act
+    Given("a repository containing two customers") {
+        val alice = Customer(1, "Alice", "alice@test.com", Date())
+        val bob = Customer(2, "Bob", "bob@test.com", Date())
+
+        repository.customers.addAll(listOf(alice, bob))
+
+
+        When("I request to retrieve the customer with ID 2") {
             val result = useCase(2)
 
-            // Assert
-            assertEquals(c2, result)
+            Then("it should return Bob") {
+                result shouldBe bob
+            }
         }
+    }
 
-        @Test
-        fun `invoke returns null when customer not present`() = runBlocking {
-            // Arrange
-            repository.customers.clear()
+    Given("an empty repository") {
 
-            // Act
-            val result = useCase(99)
+        When("I request to retrieve the customer 1") {
+            val result = useCase(1)
 
-            // Assert
-            assertNull(result)
+            Then("it should return null") {
+                result shouldBe null
+            }
         }
-}
+    }
+})
