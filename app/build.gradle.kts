@@ -103,8 +103,6 @@ val jacocoTestReport by tasks.registering(JacocoReport::class) {
         html.required.set(true)
     }
 
-/*    val debugTree = fileTree("${buildDir}/tmp/kotlin-classes/debug")
-    val mainSrc = androidExtension.sourceSets.getByName("main").java.srcDirs*/
     val fileFilter = listOf(
         "**/R.class", "**/R$*.class", "**/BuildConfig.*", "**/Manifest*.*",
         "**/*Test*.*", "android/**/*.*",
@@ -147,7 +145,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     testImplementation(libs.assertj.core)
     androidTestImplementation(libs.androidx.espresso.contrib)
-
+    androidTestImplementation(libs.androidx.espresso.intents)
     // Test compose
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)

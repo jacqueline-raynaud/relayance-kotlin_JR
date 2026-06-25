@@ -1,6 +1,5 @@
 package com.kirabium.relayance
 
-import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
@@ -11,16 +10,12 @@ import androidx.compose.ui.test.performClick
 import androidx.test.platform.app.InstrumentationRegistry
 import com.kirabium.relayance.domain.model.Customer
 import com.kirabium.relayance.ui.composable.DetailContent
-import com.kirabium.relayance.ui.composable.DetailScreen
 import com.kirabium.relayance.ui.customerdetail.DetailErrorScreen
 import com.kirabium.relayance.ui.customerdetail.DetailLoadingScreen
 import junit.framework.TestCase.assertTrue
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.experimental.theories.suppliers.TestedOn
 import java.util.Calendar
-import java.util.Date
 
 
 class DetailScreenTest {

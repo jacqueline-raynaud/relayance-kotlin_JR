@@ -40,7 +40,7 @@ class NewCustomerFilterDateTest {
         ),
         LimitDatesTest(
             "Does a date equal the filter result in a true value",
-            customer=Customer (2,"Jeanne", "jeanne@test.com",createDateForTest(2025, Calendar.OCTOBER, 1)),
+            customer=Customer (3,"Jeanne", "jeanne@test.com",createDateForTest(2025, Calendar.OCTOBER, 1)),
             expectedResult = true
         )
     )

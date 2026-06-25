@@ -10,6 +10,10 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.intent.Intents
+import androidx.test.espresso.intent.Intents.intended
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
+import androidx.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import androidx.test.espresso.matcher.ViewMatchers.hasDescendant
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withContentDescription
@@ -18,7 +22,9 @@ import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.kirabium.relayance.ui.activity.DetailActivity
 import com.kirabium.relayance.ui.activity.MainActivity
+import org.hamcrest.Matchers.allOf
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -45,23 +51,24 @@ class MainActivityTest {
             .check(matches(isDisplayed()))
 
     }
-@Test
-fun navigateByClickingFabAndBack() {
 
-    onView(withId(R.id.customerRecyclerView))
-        .check(matches(isDisplayed()))
+    @Test
+    fun navigateByClickingFabAndBack() {
 
-    onView(withId(R.id.addCustomerFab))
-        .perform(click())
+        onView(withId(R.id.customerRecyclerView))
+            .check(matches(isDisplayed()))
 
-    onView(withId(R.id.nameEditText))
-        .check(matches(isDisplayed()))
+        onView(withId(R.id.addCustomerFab))
+            .perform(click())
 
-    onView(withContentDescription(androidx.appcompat.R.string.abc_action_bar_up_description))
-        .perform(click())
-    onView(withId(R.id.customerRecyclerView))
-        .check(matches(isDisplayed()))
-}
+        onView(withId(R.id.nameEditText))
+            .check(matches(isDisplayed()))
+
+        onView(withContentDescription(androidx.appcompat.R.string.abc_action_bar_up_description))
+            .perform(click())
+        onView(withId(R.id.customerRecyclerView))
+            .check(matches(isDisplayed()))
+    }
 
     @Test
     fun clickOnSpecificCustomerOpenDetailScreenAndReturnToMain() {
@@ -86,6 +93,27 @@ fun navigateByClickingFabAndBack() {
         onView(withId(R.id.customerRecyclerView))
             .check(matches(isDisplayed()))
 
+    }
+
+    @Test
+    fun clickFirstCustomer_launchesDetailIntentWithCorrectId() {
+        Intents.init()
+        try {
+
+            onView(withId(R.id.customerRecyclerView))
+                .perform(
+                    RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click())
+                )
+
+            intended(
+                allOf(
+                    hasComponent(DetailActivity::class.java.name),
+                    hasExtra(DetailActivity.EXTRA_CUSTOMER_ID, 1)
+                )
+            )
+        } finally {
+            Intents.release()
+        }
     }
 }
 
